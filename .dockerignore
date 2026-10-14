@@ -1,0 +1,22 @@
+.venv
+.npm-cache
+.git
+**/node_modules
+frontend/dist
+**/__pycache__
+.pytest_cache
+*.db
+*.db-*
+artifacts
+
+# Internal documentation and local agent configuration
+docs
+PROJECT_PLAN.md
+sap-pp-plm-simulator-ebike.md
+.agents
+.codex
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+**/*.tsbuildinfo
+
