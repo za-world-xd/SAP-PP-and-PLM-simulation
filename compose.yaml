@@ -1,0 +1,12 @@
+services:
+  simulator:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - simulator-data:/data
+    environment:
+      ENABLE_DEMO_RESET: "1"
+volumes:
+  simulator-data:
+
