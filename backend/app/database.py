@@ -1,4 +1,5 @@
 import os
+from contextlib import contextmanager
 from pathlib import Path
 
 from sqlalchemy import create_engine, event
@@ -24,15 +25,19 @@ def sqlite_constraints(connection, _):
 SessionLocal = sessionmaker(engine, expire_on_commit=False)
 
 
+@contextmanager
+def transaction(db):
+    try:
+        # Serialize balance reads with their writes to prevent concurrent overposting.
+        db.connection().exec_driver_sql("BEGIN IMMEDIATE")
+        yield db
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+
+
 def session():
-    with SessionLocal() as db:
-        try:
-            # Acquire SQLite's write lock before reading balances for an action.
-            # This also serializes demo writes against concurrent stock postings.
-            db.connection().exec_driver_sql("BEGIN IMMEDIATE")
-            yield db
-            db.commit()
-        except Exception:
-            db.rollback()
-            raise
+    with SessionLocal() as db, transaction(db):
+        yield db
 

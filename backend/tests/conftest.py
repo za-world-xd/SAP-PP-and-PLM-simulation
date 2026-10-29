@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session
 
-from app.database import Base, session
+from app.database import Base, session, transaction as database_transaction
 from app.main import app
 from app.seed import seed
 
@@ -26,18 +26,14 @@ def engine(tmp_path):
 @pytest.fixture
 def client(engine):
     def transaction():
-        with Session(engine, expire_on_commit=False) as db:
-            try:
-                db.connection().exec_driver_sql("BEGIN IMMEDIATE")
-                yield db
-                db.commit()
-            except Exception:
-                db.rollback()
-                raise
+        with Session(engine, expire_on_commit=False) as db, database_transaction(db):
+            yield db
 
     app.dependency_overrides[session] = transaction
     client = TestClient(app, raise_server_exceptions=True)
-    yield client
-    client.close()
-    app.dependency_overrides.clear()
+    try:
+        yield client
+    finally:
+        client.close()
+        app.dependency_overrides.clear()
 
