@@ -1,6 +1,6 @@
 # E-Bike Manufacturing: PP + PLM Simulator
 
-A working educational simulator of discrete production planning and engineering change control for City E-Bike 250W (`EB-1000`). Built with FastAPI, SQLAlchemy, SQLite, React, TypeScript, and Tailwind.
+A working educational simulator of discrete production planning and engineering change control for City E-Bike 250W (`EB-1000`). Built with FastAPI, SQLAlchemy, SQLite, React, JavaScript, and Tailwind.
 
 The core workflow is demand → MRP → planned orders / purchase requisitions → production orders → component issue → operation confirmations → output receipt → technical completion. Engineering changes create dated BOM revisions while existing production orders retain copied components and operations.
 
@@ -77,10 +77,11 @@ For example, 200 bikes with no opening stock require 200 battery packs and 6,000
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q --junitxml=artifacts/test-results.xml
 Set-Location frontend
+npm run test:api
 npm run build
 ```
 
-The backend suite includes the complete 200-bike cycle, stock reconciliation, dated netting, lot sizes, shared components, partial receipts, concurrent posting, rollback, illegal actions, and engineering effectivity. Test databases are isolated temporary files. The test command generates a local JUnit report in `artifacts/test-results.xml`. The production frontend build includes TypeScript checking.
+The backend suite includes the complete 200-bike cycle, stock reconciliation, dated netting, lot sizes, shared components, partial receipts, concurrent posting, rollback, illegal actions, and engineering effectivity. Test databases are isolated temporary files. The test command generates a local JUnit report in `artifacts/test-results.xml`. Frontend API tests cover request formatting, validation errors, and unexpected server responses.
 
 ## Simulator conventions and limits
 
