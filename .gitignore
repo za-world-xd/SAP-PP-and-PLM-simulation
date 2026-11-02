@@ -6,8 +6,11 @@ __pycache__/
 *.db-*
 node_modules/
 frontend/dist/
-artifacts/browser-profile/
 *.log
+.env
+.env.*
+!.env.example
+.vercel/
 
 # Internal project notes and review artifacts
 /docs/
@@ -20,5 +23,4 @@ artifacts/browser-profile/
 /CLAUDE.md
 /GEMINI.md
 
-*.tsbuildinfo
 

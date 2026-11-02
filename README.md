@@ -106,6 +106,6 @@ A Dockerfile and Compose file package the frontend with the Python API and persi
 docker compose up --build
 ```
 
-Compose binds to loopback and enables demo reset. The standalone Docker image disables reset by default. Use one application process with a persistent `/data` volume. A hosted version needs private access controls or isolated per-user demo state before exposing mutation endpoints to shared visitors. The Sites Worker runtime cannot host this FastAPI backend directly.
+Compose binds to loopback and enables demo reset. The standalone Docker image disables reset by default. Use one application process with a persistent `/data` volume. A hosted version needs private access controls or isolated per-user demo state before exposing mutation endpoints to shared visitors.
 
-Technical references consulted during setup: [FastAPI SQL databases](https://fastapi.tiangolo.com/tutorial/sql-databases/), [SQLAlchemy session transactions](https://docs.sqlalchemy.org/en/20/orm/session_basics.html), and [Vite getting started](https://vite.dev/guide/). Package versions are frozen in `backend/requirements.txt` and `frontend/package-lock.json`.
+References: [FastAPI SQL databases](https://fastapi.tiangolo.com/tutorial/sql-databases/), [SQLAlchemy session transactions](https://docs.sqlalchemy.org/en/20/orm/session_basics.html), and [Vite getting started](https://vite.dev/guide/). Package versions are frozen in `backend/requirements.txt` and `frontend/package-lock.json`.

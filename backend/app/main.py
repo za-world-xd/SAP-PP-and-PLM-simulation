@@ -5,7 +5,7 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import delete, func, select
@@ -14,7 +14,7 @@ from sqlalchemy.orm import Session
 
 from . import schemas as s
 from .database import Base, SessionLocal, engine, session
-from .models import (Bom, BomItem, Change, IntegrationEvent, Material, Movement, MrpRun,
+from .models import (Bom, Change, IntegrationEvent, Material, Movement, MrpRun,
                      ProductionOrder, Proposal, Requirement, Reservation, Routing, WorkCenter)
 from .seed import seed
 from .services import bom, changes, mrp, orders

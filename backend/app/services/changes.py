@@ -1,9 +1,7 @@
-from decimal import Decimal
-
 from sqlalchemy import select
 
 from ..models import Bom, Change, ProductionOrder, Proposal, now
-from .bom import create_bom, items, selected
+from .bom import create_bom, items
 from .common import emit, get, record, require
 
 

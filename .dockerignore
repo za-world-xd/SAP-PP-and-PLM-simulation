@@ -18,5 +18,8 @@ sap-pp-plm-simulator-ebike.md
 AGENTS.md
 CLAUDE.md
 GEMINI.md
-**/*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.vercel
 
