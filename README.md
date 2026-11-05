@@ -98,7 +98,7 @@ The backend suite includes the complete 200-bike cycle, stock reconciliation, da
 
 ## Deployment
 
-The app runs locally. A public deployment URL has not been provisioned.
+The app runs on render.com.
 
 A Dockerfile and Compose file package the frontend with the Python API and persistent SQLite storage:
 
